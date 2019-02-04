@@ -1,6 +1,6 @@
 {
   "name": "react-radial-render",
-  "version": "0.2.0-alpha",
+  "version": "0.2.2-alpha",
   "description": "Render React components in a circle",
   "keywords": [
     "render",
@@ -33,7 +33,7 @@
   "scripts": {
     "build-dev": "npx webpack ./src/RadialRender.js -o ./demo/RadialRender.js --mode development --watch",
     "start": "npx webpack-dev-server",
-    "transpile": "npx babel src/RadialRender.js -d package-publish --copy-files",
+    "transpile": "npx babel src/RadialRender.js src/get-points.js -d  package-publish --copy-files",
     "test": "npx jest"
   },
   "author": "Kevin Brock <kbrock092684@gmail.com>",
