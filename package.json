@@ -1,7 +1,7 @@
 {
   "name": "react-radial-render",
-  "version": "0.1.0-alpha",
-  "description": "Render components in a circle",
+  "version": "0.1.1-alpha",
+  "description": "Render React components in a circle",
   "keywords": [
     "render",
     "circle",
@@ -39,7 +39,7 @@
   },
   "author": "Kevin Brock <kbrock092684@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/kbrock84/react-svg-polygon",
+  "repository": "https://github.com/kbrock84/react-radial-render",
   "browserslist": [
     ">0.2%",
     "not dead",
