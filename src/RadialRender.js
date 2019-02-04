@@ -46,8 +46,7 @@ class RadialRender extends Component {
           style={{
             width: this.props.width || `${this.props.r * 2}px`,
             height: this.props.height || `${this.props.r * 2}px`,
-            position: "relative",
-            backgroundColor: "#eeeeee"
+            position: "relative"
           }}
         >
           {points.map((point, i) => (
