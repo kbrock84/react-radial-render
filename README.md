@@ -15,7 +15,6 @@ Pass an array of components to render.
      <RadialRender
         sides={5}
         r={70}
-        strokeWidth={2}
         components={[
           <CircleBnt>1</CircleBnt>,
           <CircleBnt>2</CircleBnt>,
