@@ -3,9 +3,9 @@
   "version": "0.1.0-alpha",
   "description": "Render components in a circle",
   "keywords": [
-    "polygon",
-    "polyline",
-    "shape",
+    "render",
+    "circle",
+    "radius",
     "react",
     "reactjs"
   ],
@@ -35,8 +35,7 @@
     "build-dev": "npx webpack ./src/RadialRender.js -o ./demo/RadialRender.js --mode development --watch",
     "start": "npx webpack-dev-server",
     "transpile": "npx babel src/RadialRender.js -d package-publish --copy-files",
-    "test": "npx jest",
-    "eject": "npx react-scripts eject"
+    "test": "npx jest"
   },
   "author": "Kevin Brock <kbrock092684@gmail.com>",
   "license": "MIT",
