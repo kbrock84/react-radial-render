@@ -14,7 +14,6 @@ Pass an array of components to render.
 
 ```jsx
 <RadialRender
-  sides={5}
   r={70}
   components={[
     <CircleBnt>1</CircleBnt>,
