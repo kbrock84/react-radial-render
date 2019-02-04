@@ -29,7 +29,7 @@ Pass an array of components to render.
 />
 ```
 
-Components will render clockwize starting from the top right
+Components will render clockwise starting from the top right
 
 #### Result:
 
