@@ -1,6 +1,6 @@
 {
   "name": "react-radial-render",
-  "version": "0.1.2-alpha",
+  "version": "0.1.4-alpha",
   "description": "Render React components in a circle",
   "keywords": [
     "render",
@@ -11,7 +11,6 @@
   ],
   "main": "package-publish/RadialRender.js",
   "dependencies": {
-    "lightercollective": "^0.2.0",
     "prop-types": "^15.6.2",
     "react": "16.5.2"
   },
