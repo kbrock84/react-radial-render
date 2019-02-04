@@ -30,7 +30,6 @@ function App() {
       style={{ position: "absolute", left: "50px", top: "50px" }}
     >
       <RadialRender
-        sides={5}
         r={70}
         strokeWidth={2}
         components={[
