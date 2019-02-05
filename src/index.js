@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
-import RadialRender from "./RadialRender";
+import RadialRender from "../package-publish/RadialRender";
 
 const CircleBnt = props => {
   return (

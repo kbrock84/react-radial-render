@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getPoints } from "./get-points";
 
 class RadialRender extends Component {
   constructor(props) {
@@ -51,6 +50,9 @@ class RadialRender extends Component {
         >
           {points.map((point, i) => (
             <div
+              key={
+                this.props.genKey ? this.props.genKey() : `radial-render-${i}`
+              }
               ref={this.myRefs[i]}
               style={{
                 position: "absolute",
@@ -70,6 +72,7 @@ class RadialRender extends Component {
 RadialRender.propTypes = {
   r: PropTypes.number.isRequired,
   components: PropTypes.array.isRequired,
+  genKey: PropTypes.func,
   width: PropTypes.number,
   height: PropTypes.number,
   cx: PropTypes.number,
