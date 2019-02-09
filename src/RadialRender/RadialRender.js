@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getPoints } from "./get-points";
-import { red } from "ansi-colors";
 
 class RadialRender extends Component {
   constructor(props) {
