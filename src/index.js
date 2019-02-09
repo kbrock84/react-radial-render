@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
+import ErrorBoundary from "react-error-boundary";
 import "./styles.css";
 import RadialRender from "../package-publish/RadialRender";
 
@@ -29,20 +29,22 @@ function App() {
       className="App"
       style={{ position: "absolute", left: "50px", top: "50px" }}
     >
-      <RadialRender
-        r={70}
-        strokeWidth={2}
-        components={[
-          <CircleBnt>1</CircleBnt>,
-          <CircleBnt>2</CircleBnt>,
-          <CircleBnt>3</CircleBnt>,
-          <CircleBnt>4</CircleBnt>,
-          <CircleBnt>5</CircleBnt>,
-          <CircleBnt>6</CircleBnt>,
-          <CircleBnt>7</CircleBnt>,
-          <CircleBnt>8</CircleBnt>
-        ]}
-      />
+      <ErrorBoundary>
+        <RadialRender
+          r={70}
+          strokeWidth={2}
+          components={[
+            <CircleBnt>1</CircleBnt>,
+            <CircleBnt>2</CircleBnt>,
+            <CircleBnt>3</CircleBnt>,
+            <CircleBnt>4</CircleBnt>,
+            <CircleBnt>5</CircleBnt>,
+            <CircleBnt>6</CircleBnt>,
+            <CircleBnt>7</CircleBnt>,
+            <CircleBnt>8</CircleBnt>
+          ]}
+        />
+      </ErrorBoundary>
     </div>
   );
 }
