@@ -2,8 +2,6 @@ export function getPoints(r, num, cx = null, cy = null) {
   let points = [];
   let centerX = cx || r;
   let centerY = cy || r;
-  console.log(centerX);
-  console.log(centerY);
 
   for (let i = 1; i < num + 1; i++) {
     points.push({
