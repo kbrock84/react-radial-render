@@ -10,7 +10,13 @@ npm i react-radial-render
 
 ## Basic Usage
 
-Pass an array of components to render and r as the radius.
+Import the <code>RadialRender</code> component:
+
+``` javascript
+import RadialRender from "react-radial-render";
+```
+
+Pass an array of components to render and r as the radius:
 
 ```jsx
 <RadialRender
@@ -41,7 +47,7 @@ The components will be rendered along the radius at the center point of each com
 ### r
 
 ```javascript
-r: PropTypes.number.isRequired;
+r: PropTypes.number.isRequired
 ```
 
 The radius to render all components in a circle. Components will be rendered at their centerpoint along the radius.
@@ -49,31 +55,31 @@ The radius to render all components in a circle. Components will be rendered at 
 ### components
 
 ```javascript
-components: PropTypes.array.isRequired;
+components: PropTypes.array.isRequired
 ```
 
 An array of components to render. The qty of points rendered along the arc is controlled by the lenght of the array.
 
-### genKey
+### genKey()
 
 ```javascript
-genKey: PropTypes.func;
+genKey: PropTypes.func
 ```
 
-A function for generating your own unique keys for components. The default is <code>radial-render-[i]</code> where <code>[i]</code> is the index of the component. This should be used especially when using the <code>RadialRender</code> component multiple times in an application.
+A function for generating your own unique keys for components. The default is <code>radial-render-[i]</code> where <code>[i]</code> is the index of the component. This prop should be used especially when using the <code>RadialRender</code> component multiple times in an application.
 
 ### width
 
 ```javascript
-width: PropTypes.number;
+width: PropTypes.number
 ```
 
-The width of the containing div in the RadialRender component.
+The width of the containing div in the <code>RadialRender</code> component.
 
 ### height
 
 ```javascript
-height: PropTypes.number;
+height: PropTypes.number
 ```
 
-The height of the containing div in the RadialRender component.
+The height of the containing div in the <code>RadialRender</code> component.
