@@ -60,7 +60,6 @@ class RadialRender extends Component {
           display: "flex",
           justifyContent: "flex-center",
           alignItems: "middle",
-          backgroundColor: "orange",
           width: this.width || "",
           height: this.height || ""
         }}
@@ -69,7 +68,6 @@ class RadialRender extends Component {
           style={{
             width: this.props.r * 2,
             height: this.props.r * 2,
-            backgroundColor: "red",
             margin: "auto"
           }}
         >
