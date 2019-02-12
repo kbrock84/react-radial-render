@@ -1,28 +1,28 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
-class RadialRender extends Component {
-  constructor(props) {
-    super(props);
-    this.renderedComponents = props.components.map(c => React.createRef());
-    this.cx;
-    this.cy;
-    this.width;
-    this.height;
-    this.state = { renderTrigger: 0 };
-  }
+function RadialRender(props) {
+  const [containerDims, setContainerDims] = useState({ width: 0, height: 0 });
+  const [renderPoints] = useState(getPoints(props.r, props.components.length));
 
-  componentDidMount() {
+  const [isCentered, setIsCentered] = useState(false);
+  const renderedComponents = props.components.map(c => useRef(c));
+
+  useEffect(() => {
     let leftBounds = 0;
     let rightBounds = 0;
     let topBounds = 0;
     let bottomBounds = 0;
 
-    this.renderedComponents.forEach(ref => {
+    renderedComponents.forEach(ref => {
       let el = ref.current;
 
       let left, top;
-      [left, top] = this.centerElement(el);
+      if (!isCentered) {
+        [left, top] = centerElement(el);
+      } else {
+        [left, top] = [el.style.left, el.style.top];
+      }
 
       let right = left + el.offsetWidth;
       let bottom = top + el.offsetHeight;
@@ -33,69 +33,63 @@ class RadialRender extends Component {
       bottomBounds = bottom > bottomBounds ? bottom : bottomBounds;
     });
 
-    this.width = -1 * leftBounds + rightBounds + "px";
-    this.height = -1 * topBounds + bottomBounds + "px";
-    this.triggerRender();
-  }
+    let width = -1 * leftBounds + rightBounds + "px";
+    let height = -1 * topBounds + bottomBounds + "px";
+    if (containerDims.width == 0) {
+      setContainerDims({ width: width, height: height });
+    }
+    setIsCentered(true);
+  });
 
-  triggerRender() {
-    this.setState({ renderTrigger: this.state.renderTrigger++ });
-  }
-
-  centerElement(el) {
-    let left = parseInt(el.style.left.replace("px", "")) - el.offsetWidth / 2;
-    el.style.left = left + "px";
-
-    let top = parseInt(el.style.top.replace("px", "")) - el.offsetHeight / 2;
-    el.style.top = top + "px";
-    return [left, top];
-  }
-
-  render() {
-    const points = getPoints(this.props.r, this.props.components.length);
-
-    return (
+  return (
+    <div
+      data-testid={isCentered ? "render-complete" : "render-incomplete"}
+      style={{
+        display: "flex",
+        justifyContent: "flex-center",
+        alignItems: "middle",
+        width: containerDims.width || "",
+        height: containerDims.height || ""
+      }}
+    >
       <div
         style={{
-          display: "flex",
-          justifyContent: "flex-center",
-          alignItems: "middle",
-          width: this.width || "",
-          height: this.height || ""
+          width: props.r * 2,
+          height: props.r * 2,
+          margin: "auto"
         }}
       >
         <div
           style={{
-            width: this.props.r * 2,
-            height: this.props.r * 2,
-            margin: "auto"
+            position: "relative"
           }}
         >
-          <div
-            style={{
-              position: "relative"
-            }}
-          >
-            {points.map((point, i) => (
-              <div
-                key={
-                  this.props.genKey ? this.props.genKey() : `radial-render-${i}`
-                }
-                ref={this.renderedComponents[i]}
-                style={{
-                  position: "absolute",
-                  top: `${point.y}px`,
-                  left: `${point.x}px`
-                }}
-              >
-                {this.props.components[i]}
-              </div>
-            ))}
-          </div>
+          {renderPoints.map((point, i) => (
+            <div
+              key={props.genKey ? props.genKey() : `radial-render-${i}`}
+              ref={renderedComponents[i]}
+              style={{
+                position: "absolute",
+                top: `${point.y}px`,
+                left: `${point.x}px`
+              }}
+            >
+              {props.components[i]}
+            </div>
+          ))}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+function centerElement(el) {
+  let left = parseInt(el.style.left.replace("px", "")) - el.offsetWidth / 2;
+  el.style.left = left + "px";
+
+  let top = parseInt(el.style.top.replace("px", "")) - el.offsetHeight / 2;
+  el.style.top = top + "px";
+  return [left, top];
 }
 
 RadialRender.propTypes = {
