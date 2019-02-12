@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import ErrorBoundary from "react-error-boundary";
 import "./styles.css";
@@ -6,33 +6,33 @@ import RadialRender from "../package-publish/RadialRender";
 
 const CircleBnt = props => {
   return (
-    <div>
-      <button
-        style={{
-          height: "30px",
-          width: "30px",
-          borderRadius: "15px",
-          border: "none",
-          backgroundColor: "#125ee1",
-          color: "#fefefe"
-        }}
-      >
-        {props.children}
-      </button>
-    </div>
+    <button
+      style={{
+        height: "20px",
+        width: "20px",
+        borderRadius: "15px",
+        border: "none",
+        backgroundColor: "#125ee1",
+        color: "#fefefe"
+      }}
+    >
+      {props.children}
+    </button>
   );
 };
 
 function App() {
+  const [radius, setRadius] = useState(50);
   return (
     <div
       className="App"
       style={{ position: "absolute", left: "50px", top: "50px" }}
     >
+      <button onClick={() => setRadius(radius - 10)}>-</button>
+      <button onClick={() => setRadius(radius + 10)}>+</button>
       <ErrorBoundary>
         <RadialRender
-          r={70}
-          strokeWidth={2}
+          r={radius}
           components={[
             <CircleBnt>1</CircleBnt>,
             <CircleBnt>2</CircleBnt>,
