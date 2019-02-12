@@ -1,7 +1,13 @@
 import "jest-dom/extend-expect";
 import RadialRender from "../package-publish/RadialRender";
 import React from "react";
-import { render } from "react-testing-library";
+import {
+  render,
+  waitForElement,
+  fireEvent,
+  flushEffects
+} from "react-testing-library";
+import "@babel/polyfill";
 
 const originalConsoleError = console.error;
 
@@ -14,7 +20,7 @@ console.error = message => {
     throw new Error("missing components prop");
   }
 
-  originalConsoleError(message);
+  //originalConsoleError(message);
 };
 
 test("Should console.error when missing sides prop", () => {
@@ -41,4 +47,24 @@ test("should render the qty of components passed to the components props", () =>
 
   let tags = queryAllByTestId(/test-child/);
   expect(tags.length).toBe(6);
+});
+
+test("container should be wide enough to contain all elements", async () => {
+  const testChildren = [
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>,
+    <div style={{ width: "20px" }}>c</div>
+  ];
+
+  const { container } = render(
+    <RadialRender r={50} components={testChildren} />
+  );
+  flushEffects();
+
+  expect(container.childNodes[0].style.width).toBe("120px");
 });
