@@ -1,18 +1,37 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
+function RChild(props) {
+  const ref = useRef();
+  props.addRef(ref);
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: "absolute",
+        top: `${props.point.y}px`,
+        left: `${props.point.x}px`
+      }}
+    >
+      {props.children}
+    </div>
+  );
+}
+
 function RadialRender(props) {
   const containerRef = useRef();
-  const renderedComponents = props.components.map(c => useRef(c));
-  let renderPoints = getPoints(props.r, props.components.length);
 
-  const updateComponents = () => {
+  const RChildrenRefs = [];
+  let renderPoints = getPoints(props.r, props.components.length);
+  const addRef = ref => RChildrenRefs.push(ref);
+
+  useEffect(() => {
     let leftBounds = 0;
     let rightBounds = 0;
     let topBounds = 0;
     let bottomBounds = 0;
 
-    renderedComponents.forEach(ref => {
+    RChildrenRefs.forEach(ref => {
       let el = ref.current;
 
       let left, top;
@@ -31,40 +50,29 @@ function RadialRender(props) {
       bottomBounds = bottom > bottomBounds ? bottom : bottomBounds;
     });
 
-    let width = leftBounds + rightBounds + "px";
-    let height = topBounds + bottomBounds + "px";
+    let width = -1 * leftBounds + rightBounds + "px";
+    let height = -1 * topBounds + bottomBounds + "px";
 
     let container = containerRef.current;
     container.style.width = width;
     container.style.height = height;
-    console.log(`width:${width}, height:${height}`);
-  };
-
-  useEffect(() => {
-    updateComponents();
   });
 
   return (
-    <div ref={containerRef} className="radial-render-container">
-      <div
-        style={{
-          position: "relative"
-        }}
-      >
-        {renderPoints.map((point, i) => (
-          <div
-            key={props.genKey ? props.genKey() : `radial-render-${i}`}
-            ref={renderedComponents[i]}
-            style={{
-              position: "absolute",
-              top: `${point.y}px`,
-              left: `${point.x}px`
-            }}
-          >
-            {props.components[i]}
-          </div>
-        ))}
-      </div>
+    <div
+      ref={containerRef}
+      className="radial-render-container"
+      style={{ margin: "0", padding: "0", position: "relative" }}
+    >
+      {renderPoints.map((point, i) => (
+        <RChild
+          addRef={addRef}
+          key={props.genKey ? props.genKey() : `radial-render-${i}`}
+          point={point}
+        >
+          {props.components[i]}
+        </RChild>
+      ))}
     </div>
   );
 }
