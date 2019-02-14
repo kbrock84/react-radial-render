@@ -9,8 +9,8 @@ function RChild(props) {
       ref={ref}
       style={{
         position: "absolute",
-        top: `${props.point.y}px`,
-        left: `${props.point.x}px`
+        top: `${props.top}px`,
+        left: `${props.left}px`
       }}
     >
       {props.children}
@@ -22,40 +22,39 @@ function RadialRender(props) {
   const containerRef = useRef();
 
   const RChildrenRefs = [];
-  let renderPoints = getPoints(props.r, props.components.length);
+  const { points, leastX, leastY, greatestX, greatestY } = getPoints(
+    props.r,
+    props.components.length
+  );
   const addRef = ref => RChildrenRefs.push(ref);
 
   useEffect(() => {
-    let leftBounds = 0;
     let rightBounds = 0;
-    let topBounds = 0;
     let bottomBounds = 0;
 
     RChildrenRefs.forEach(ref => {
       let el = ref.current;
 
-      let left, top;
-
-      [left, top] = [
+      const [left, top] = [
         parseInt(el.style.left.replace("px", "")),
         parseInt(el.style.top.replace("px", ""))
       ];
 
-      let right = left + el.offsetWidth;
-      let bottom = top + el.offsetHeight;
+      if (left == greatestX) {
+        rightBounds = left + el.offsetWidth;
+      }
 
-      leftBounds = left < leftBounds ? left : leftBounds;
-      rightBounds = right > rightBounds ? right : rightBounds;
-      topBounds = top < topBounds ? top : topBounds;
-      bottomBounds = bottom > bottomBounds ? bottom : bottomBounds;
+      if (top == greatestY) {
+        bottomBounds = top + el.offsetHeight;
+      }
+
+      el.style.left = left - leastX + "px";
+      el.style.top = top - leastY + "px";
     });
 
-    let width = -1 * leftBounds + rightBounds + "px";
-    let height = -1 * topBounds + bottomBounds + "px";
-
     let container = containerRef.current;
-    container.style.width = width;
-    container.style.height = height;
+    container.style.width = rightBounds - leastX + "px";
+    container.style.height = bottomBounds - leastY + "px";
   });
 
   return (
@@ -64,11 +63,12 @@ function RadialRender(props) {
       className="radial-render-container"
       style={{ margin: "0", padding: "0", position: "relative" }}
     >
-      {renderPoints.map((point, i) => (
+      {points.map((point, i) => (
         <RChild
           addRef={addRef}
           key={props.genKey ? props.genKey() : `radial-render-${i}`}
-          point={point}
+          top={point.y}
+          left={point.x}
         >
           {props.components[i]}
         </RChild>
