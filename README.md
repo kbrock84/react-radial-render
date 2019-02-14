@@ -4,8 +4,8 @@
 <br />
 
 ## Requirements
-
-#### React 16.8.1
+**React 16.8.1**
+<br />
 <br />
 
 ## Install
