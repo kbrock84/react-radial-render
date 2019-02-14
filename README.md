@@ -1,12 +1,19 @@
 # \<RadialRender />
 
 ### Render React components in a circle
+<br />
+
+## Requirements
+
+#### React 16.8.1
+<br />
 
 ## Install
 
 ```bash
 npm i react-radial-render
 ```
+<br />
 
 ## Basic Usage
 
@@ -41,6 +48,8 @@ Components will render clockwise starting from the top right
 The components will be rendered along the radius at the center point of each component.
 
 ![](demo/radial-render.PNG)
+
+<br />
 
 ## Props
 
