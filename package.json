@@ -1,6 +1,6 @@
 {
   "name": "react-radial-render",
-  "version": "1.2.0-alpha",
+  "version": "1.2.1-alpha",
   "description": "Render React components in a circle",
   "keywords": [
     "render",
