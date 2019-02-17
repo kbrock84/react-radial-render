@@ -22,7 +22,7 @@ npm i react-radial-render
 
 ## Usage
 
-Import the <code>RadialRender</code> component:
+Import the **<code>RadialRender</code>** component:
 
 ``` javascript
 import RadialRender from "react-radial-render";
