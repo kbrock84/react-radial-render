@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 function RChild(props) {
@@ -20,11 +20,12 @@ function RChild(props) {
 
 function RadialRender(props) {
   const containerRef = useRef();
+  const childArray = React.Children.toArray(props.children);
 
   const RChildrenRefs = [];
   const { points, leastX, leastY, greatestX, greatestY } = getPoints(
     props.r,
-    props.components.length
+    childArray.length
   );
   const addRef = ref => RChildrenRefs.push(ref);
 
@@ -67,7 +68,7 @@ function RadialRender(props) {
           top={point.y - leastY}
           left={point.x - leastX}
         >
-          {props.components[i]}
+          {childArray[i]}
         </RChild>
       ))}
     </div>
@@ -75,11 +76,7 @@ function RadialRender(props) {
 }
 
 RadialRender.propTypes = {
-  r: PropTypes.number.isRequired,
-  components: PropTypes.array.isRequired,
-  genKey: PropTypes.func,
-  width: PropTypes.number,
-  height: PropTypes.number
+  r: PropTypes.number.isRequired
 };
 
 export default RadialRender;
