@@ -33,13 +33,13 @@ Pass prop **<code>r</code>** as the radius
 
 ```jsx
 <RadialRender r={70}>
-  <CircleBnt>1</CircleBnt>,
-  <CircleBnt>2</CircleBnt>,
-  <CircleBnt>3</CircleBnt>,
-  <CircleBnt>4</CircleBnt>,
-  <CircleBnt>5</CircleBnt>,
-  <CircleBnt>6</CircleBnt>,
-  <CircleBnt>7</CircleBnt>,
+  <CircleBnt>1</CircleBnt>
+  <CircleBnt>2</CircleBnt>
+  <CircleBnt>3</CircleBnt>
+  <CircleBnt>4</CircleBnt>
+  <CircleBnt>5</CircleBnt>
+  <CircleBnt>6</CircleBnt>
+  <CircleBnt>7</CircleBnt>
   <CircleBnt>8</CircleBnt>
 </RadialRender>
 ```
