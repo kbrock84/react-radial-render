@@ -102,7 +102,6 @@ function App() {
         <ControlBtn onClick={removeChild}>components -</ControlBtn>
       </ControlBar>
       <ErrorBoundary>
-        {console.log(childComponents.length)}
         <RadialRender r={radius}>
           {childComponents.map((c, i) => (
             <div key={i}>{c}</div>
