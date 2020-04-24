@@ -1,52 +1,53 @@
 {
-  "name": "react-radial-render",
-  "version": "2.0.1",
-  "description": "Render React components in a circle",
-  "keywords": [
-    "render",
-    "circle",
-    "radius",
-    "react",
-    "reactjs"
-  ],
-  "main": "package-publish/RadialRender.js",
-  "dependencies": {
-    "eslint-plugin-react-hooks": "^1.0.1",
-    "prop-types": "^15.6.2",
-    "react": "^16.8.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "concurrently": "^4.1.0",
-    "css-loader": "^2.1.0",
-    "jest": "^24.0.0",
-    "jest-dom": "^3.0.1",
-    "parcel-bundler": "^1.11.0",
-    "react-dom": "^16.8.1",
-    "react-error-boundary": "^1.2.3",
-    "react-testing-library": "^5.4.4",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
-  },
-  "scripts": {
-    "transpile-watch": "npx babel src/RadialRender --out-file package-publish/RadialRender.js --watch",
-    "start": "npx concurrently \"npm run transpile-watch\" \"npx webpack-dev-server\"",
-    "transpile": "npx babel src/RadialRender --out-file package-publish/RadialRender.js",
-    "test": "npx concurrently \"npm run transpile-watch\" \"npx jest --watch\""
-  },
-  "author": "Kevin Brock <kbrock092684@gmail.com>",
-  "license": "MIT",
-  "repository": "https://github.com/kbrock84/react-radial-render",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+	"name": "react-radial-render",
+	"version": "2.0.3",
+	"description": "Render React components in a circle",
+	"keywords": [
+		"render",
+		"circle",
+		"radius",
+		"react",
+		"reactjs"
+	],
+	"main": "package-publish/RadialRender.js",
+	"dependencies": {
+		"eslint-plugin-react-hooks": "^1.0.1",
+		"prop-types": "^15.6.2",
+		"react": "^16.8.1"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.2.2",
+		"@babel/polyfill": "^7.2.5",
+		"@babel/preset-env": "^7.9.5",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.5",
+		"concurrently": "^4.1.0",
+		"css-loader": "^2.1.0",
+		"jest": "^24.0.0",
+		"jest-dom": "^3.0.1",
+		"parcel-bundler": "^1.12.4",
+		"react-dom": "^16.8.1",
+		"react-error-boundary": "^1.2.3",
+		"react-testing-library": "^5.4.4",
+		"style-loader": "^0.23.1",
+		"webpack": "^4.29.0",
+		"webpack-cli": "^3.2.1",
+		"webpack-dev-server": "^3.1.14"
+	},
+	"scripts": {
+		"transpile-watch": "npx babel src/RadialRender --out-file package-publish/RadialRender.js --watch",
+		"start": "npx concurrently \"npm run transpile-watch\" \"npx webpack-dev-server\"",
+		"transpile": "npx babel src/RadialRender --out-file package-publish/RadialRender.js",
+		"test": "npx concurrently \"npm run transpile-watch\" \"npx jest --watch\""
+	},
+	"author": "Kevin Brock <kbrock092684@gmail.com>",
+	"license": "MIT",
+	"repository": "https://github.com/kbrock84/react-radial-render",
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	]
 }
